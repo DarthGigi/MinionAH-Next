@@ -1,7 +1,6 @@
+import type { Font as FontOptions } from "next/dist/compiled/@vercel/og/satori";
 import { ImageResponse } from "next/og";
 import type { ReactElement } from "react";
-import type { User } from "@prisma/client";
-import type { Font as FontOptions } from "next/dist/compiled/@vercel/og/satori";
 
 export const runtime = "edge";
 
@@ -83,7 +82,7 @@ export async function GET(
     ];
   }
 
-  const user: User | null = await fetch(
+  const user = await fetch(
     `https://og.minionah.com/api/user/${params.user}`,
   ).then((res) => res.json());
 
