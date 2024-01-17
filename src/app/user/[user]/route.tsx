@@ -93,7 +93,7 @@ export async function GET(
   // }
 
   const user: User | null = await fetch(
-    new URL(`/api/user/${params.user}`, import.meta.url),
+    `https://og.minionah.com/api/user/${params.user}`,
   ).then((res) => res.json());
 
   if (!user) {
