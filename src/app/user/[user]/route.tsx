@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import type { ReactElement } from "react";
 import type { User } from "@prisma/client";
-// import type { Font as FontOptions } from "next/dist/compiled/@vercel/og/satori";
+import type { Font as FontOptions } from "next/dist/compiled/@vercel/og/satori";
 
 export const runtime = "edge";
 
@@ -55,42 +55,42 @@ export async function GET(
   { params }: { params: { user: string } },
 ) {
   const { searchParams } = new URL(request.url);
-  // const minecraftFont: boolean = searchParams.get("minecraftFont") !== "false";
-  // let fonts: FontOptions[] | undefined = undefined;
+  const minecraftFont: boolean = searchParams.get("minecraftFont") !== "false";
+  let fonts: FontOptions[] | undefined = undefined;
 
-  // if (minecraftFont) {
-  //   const minecraftFontData = await fetch(
-  //     new URL("/public/assets/fonts/minecraft.ttf", import.meta.url),
-  //   ).then((res) => res.arrayBuffer());
-  //   fonts = [
-  //     {
-  //       name: "Minecraft",
-  //       data: minecraftFontData,
-  //     },
-  //   ];
-  // } else {
-  //   const fontData400 = await fetch(
-  //     new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url),
-  //   ).then((res) => res.arrayBuffer());
+  if (minecraftFont) {
+    const minecraftFontData = await fetch(
+      new URL("/public/assets/fonts/minecraft.ttf", import.meta.url),
+    ).then((res) => res.arrayBuffer());
+    fonts = [
+      {
+        name: "Minecraft",
+        data: minecraftFontData,
+      },
+    ];
+  } else {
+    const fontData400 = await fetch(
+      new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url),
+    ).then((res) => res.arrayBuffer());
 
-  //   const fontData700 = await fetch(
-  //     new URL("/public/assets/fonts/Inter-Bold.ttf", import.meta.url),
-  //   ).then((res) => res.arrayBuffer());
-  //   fonts = [
-  //     {
-  //       name: "Inter",
-  //       data: fontData400,
-  //       weight: 400,
-  //       style: "normal",
-  //     },
-  //     {
-  //       name: "Inter",
-  //       data: fontData700,
-  //       weight: 700,
-  //       style: "normal",
-  //     },
-  //   ];
-  // }
+    const fontData700 = await fetch(
+      new URL("/public/assets/fonts/Inter-Bold.ttf", import.meta.url),
+    ).then((res) => res.arrayBuffer());
+    fonts = [
+      {
+        name: "Inter",
+        data: fontData400,
+        weight: 400,
+        style: "normal",
+      },
+      {
+        name: "Inter",
+        data: fontData700,
+        weight: 700,
+        style: "normal",
+      },
+    ];
+  }
 
   const user: User | null = await fetch(
     `https://og.minionah.com/api/user/${params.user}`,
