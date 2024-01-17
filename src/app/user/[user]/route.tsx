@@ -73,20 +73,11 @@ export async function GET(
       new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url),
     ).then((res) => res.arrayBuffer());
 
-    const fontData700 = await fetch(
-      new URL("/public/assets/fonts/Inter-Bold.ttf", import.meta.url),
-    ).then((res) => res.arrayBuffer());
     fonts = [
       {
         name: "Inter",
         data: fontData400,
         weight: 400,
-        style: "normal",
-      },
-      {
-        name: "Inter",
-        data: fontData700,
-        weight: 700,
         style: "normal",
       },
     ];
@@ -107,6 +98,7 @@ export async function GET(
           height: 630,
           width: 1200,
           headers,
+          fonts,
         },
       );
     } catch (error) {
@@ -122,6 +114,7 @@ export async function GET(
       height: 630,
       width: 1200,
       headers,
+      fonts,
     });
   } catch (error) {
     console.error(error);
