@@ -31,6 +31,7 @@ const config = {
         checksVoidReturn: { attributes: false },
       },
     ],
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "@next/next/no-img-element": "off",
     "jsx-a11y/alt-text": "off",
   },
