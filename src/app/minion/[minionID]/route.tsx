@@ -72,31 +72,31 @@ function Template({
           </span>
           <div tw="mx-auto mt-4 flex w-full items-center justify-center border-t border-neutral-700">
             <div tw="relative flex w-0 flex-1 items-center justify-center overflow-hidden text-2xl font-medium text-neutral-200">
-              <span
-                tw={`flex-shrink-0 rounded-full bg-neutral-400 px-2 py-0.5 font-medium text-neutral-800 group-hover:scale-125 group-hover:text-neutral-900`}
-              >
+              <span tw="flex-shrink-0 rounded-full bg-neutral-400 px-3 py-0.5 text-2xl font-medium text-neutral-800">
                 {romanNumerals
                   ? `Tier ${["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"][minion.minion.generator_tier - 1]}`
                   : `Tier ${minion.minion.generator_tier}`}
               </span>
             </div>
             <div tw="relative border-l border-r border-neutral-700 -ml-px flex w-0 flex-1 overflow-hidden">
-              <span tw="relative w-0 flex-1 items-center justify-center overflow-hidden py-4 text-2xl font-medium text-neutral-200 group-hover:scale-125 group-hover:text-neutral-900">
+              <span tw="relative w-0 flex-1 items-center justify-center overflow-hidden py-4 text-2xl font-medium text-neutral-200">
                 <img
-                  tw="mr-1 h-10 w-10"
+                  tw="absolute left-4 h-10 w-10"
                   src={`data:image/png;base64,${btoa(String.fromCharCode(...new Uint8Array(coinImageData)))}`}
                 />
-                {formatNumber(minion.price)}
-                <span tw="ml-1 text-2xl text-neutral-200/50 group-hover:ml-0 group-hover:text-neutral-900/0">
-                  /
-                </span>
-                <span tw="text-2xl text-neutral-200/50 group-hover:-ml-0.5 group-hover:text-neutral-900">
-                  each
-                </span>
+                <div tw="flex flex-col justify-center items-center">
+                  {formatNumber(minion.price)}
+                  {minion.amount! > 1 && (
+                    <div tw="flex">
+                      <span tw="ml-1 text-2xl text-neutral-200/50">/</span>
+                      <span tw="text-2xl text-neutral-200/50">each</span>
+                    </div>
+                  )}
+                </div>
               </span>
             </div>
             <div tw="relative flex w-0 flex-1 items-center justify-center text-sm font-medium text-neutral-200">
-              <span tw="flex-shrink-0 rounded-full bg-neutral-400 px-2 py-0.5 text-2xl font-medium text-neutral-800 group-hover:scale-125 group-hover:text-neutral-900">
+              <span tw="flex-shrink-0 rounded-full bg-neutral-400 px-3 py-0.5 text-2xl font-medium text-neutral-800">
                 {` Amount: ${minion.amount}`}
               </span>
             </div>
