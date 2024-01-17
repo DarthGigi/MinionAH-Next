@@ -110,7 +110,7 @@ function Template({
 
 export async function GET(
   request: Request,
-  { params }: { params: { user: string; minionID: string } },
+  { params }: { params: { minionID: string } },
 ) {
   const { searchParams } = new URL(request.url);
   const minecraftFont: boolean = searchParams.get("minecraftFont") !== "false";
@@ -153,14 +153,7 @@ export async function GET(
 
   const minion = await prisma.minionSeller.findUnique({
     where: {
-      id: params.minionID,
-      AND: [
-        {
-          user: {
-            username: params.user,
-          },
-        },
-      ],
+      id: params.minionID
     },
     select: {
       minion: {
@@ -186,7 +179,7 @@ export async function GET(
       return new ImageResponse(
         ErrorTemplate({
           errorTitle: "Minion not found",
-          errorDescription: `${params.user}${params.user.endsWith("s") ? "'" : "'s"} Minion could not be found`,
+          errorDescription: `The minion could not be found`,
         }),
         {
           height: 630,
