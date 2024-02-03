@@ -13,15 +13,15 @@ export async function GET(
     select: {
       minion: {
         select: {
+          id: true,
           name: true,
-          texture: true,
           generator_tier: true,
         },
       },
       user: {
         select: {
+          id: true,
           username: true,
-          avatar: true,
         },
       },
       price: true,
