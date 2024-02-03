@@ -8,6 +8,10 @@ export async function GET(
 ) {
   const data = await prisma.user.findUnique({
     where: { username: params.user },
+    select: {
+      id: true,
+      username: true,
+    },
   });
 
   return Response.json(data);
