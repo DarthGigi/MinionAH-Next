@@ -17,7 +17,7 @@ function ErrorTemplate({
   errorDescription: string;
 }): ReactElement {
   return (
-    <div tw="flex h-full w-full text-white text-7xl flex-col items-center justify-center bg-[#131313]">
+    <div tw="flex h-full w-full text-white text-7xl flex-col items-center justify-center bg-[#171717]">
       <span>{errorTitle}</span>
       <span tw="text-3xl mt-10">{errorDescription}</span>
     </div>
@@ -28,18 +28,18 @@ function Template({
   user,
 }: {
   user: {
+    id: string;
     username: string;
-    avatar: string;
   };
 }): ReactElement {
   return (
-    <div tw="flex h-full w-full flex-col items-center justify-center bg-[#131313]">
+    <div tw="flex h-full w-full flex-col items-center justify-center bg-[#171717]">
       <div tw="flex w-full max-w-2xl justify-center rounded-lg border border-neutral-700 bg-neutral-800 shadow">
         <div tw="mx-auto flex flex-col items-center rounded py-20">
           <div tw="flex mb-3 items-center h-44 w-44 shadow-lg overflow-hidden justify-center rounded-full bg-neutral-700">
             <img
               tw="h-full w-full p-4"
-              src={`data:image/png;base64,${user.avatar}`}
+              src={`https://res.cloudinary.com/minionah/image/upload/v1/users/avatars/${user.id}`}
             />
           </div>
           <span tw="mb-1 text-4xl font-medium text-white">{user.username}</span>
