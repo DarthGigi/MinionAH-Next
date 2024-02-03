@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full w-full">
       <body
-        className={`dark h-full w-full bg-[#131313] font-sans text-white ${inter.variable}`}
+        className={`dark h-full w-full bg-[#171717] font-sans text-white ${inter.variable}`}
       >
         {children}
       </body>
