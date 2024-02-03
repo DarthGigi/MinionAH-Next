@@ -18,7 +18,7 @@ function ErrorTemplate({
   errorDescription: string;
 }): ReactElement {
   return (
-    <div tw="flex h-full w-full text-white text-7xl flex-col items-center justify-center bg-[#131313]">
+    <div tw="flex h-full w-full text-white text-7xl flex-col items-center justify-center bg-[#171717]">
       <span>{errorTitle}</span>
       <span tw="text-3xl mt-10">{errorDescription}</span>
     </div>
@@ -32,13 +32,13 @@ function Template({
 }: {
   minion: {
     minion: {
+      id: string;
       name: string;
-      texture: string;
       generator_tier: number;
     };
     user: {
+      id: string;
       username: string;
-      avatar: string;
     };
     price: number;
     amount: number | null;
@@ -47,13 +47,13 @@ function Template({
   romanNumerals: boolean;
 }): ReactElement {
   return (
-    <div tw="flex h-full w-full flex-col items-center justify-center bg-[#131313]">
+    <div tw="flex h-full w-full flex-col items-center justify-center bg-[#171717]">
       <div tw="flex w-full max-w-xl flex-col rounded-lg border border-neutral-700 bg-neutral-800 shadow">
         <div tw="mx-auto flex flex-col items-center rounded py-10">
           <div tw="flex mb-3 items-center h-44 w-44 shadow-lg overflow-hidden justify-center rounded-full bg-neutral-700">
             <img
               tw="h-full w-full p-4"
-              src={`data:image/png;base64,${minion.user.avatar}`}
+              src={`https://res.cloudinary.com/minionah/image/upload/v1/users/avatars/${minion.user.id}`}
             />
           </div>
           <span tw="text-4xl font-medium text-white">
@@ -64,7 +64,7 @@ function Template({
           <div tw="flex h-24 w-24 rounded-full bg-neutral-700 p-1">
             <img
               tw="h-full w-full"
-              src={`data:image/png;base64,${minion.minion.texture}`}
+              src={`https://res.cloudinary.com/minionah/image/upload/v1/minions/head/${minion.minion.id}`}
             />
           </div>
           <span tw="text-3xl mt-3 font-medium text-white">
