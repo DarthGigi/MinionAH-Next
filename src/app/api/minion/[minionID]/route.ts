@@ -6,28 +6,35 @@ export async function GET(
   request: Request,
   { params }: { params: { minionID: string } },
 ) {
-  const data = await prisma.minionSeller.findUnique({
-    where: {
-      id: params.minionID,
-    },
-    select: {
-      minion: {
-        select: {
-          id: true,
-          name: true,
-          generator_tier: true,
-        },
+  try {
+    const data = await prisma.auction.findUnique({
+      where: {
+        id: params.minionID,
       },
-      user: {
-        select: {
-          id: true,
-          username: true,
+      select: {
+        minion: {
+          select: {
+            id: true,
+            name: true,
+            generator_tier: true,
+          },
         },
+        user: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
+        price: true,
+        amount: true,
       },
-      price: true,
-      amount: true,
-    },
-  });
+    });
 
-  return Response.json(data);
+    return Response.json(data);
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: "Failed to fetch auction" }), {
+      status: 500,
+    });
+  }
 }
