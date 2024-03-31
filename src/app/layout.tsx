@@ -9,8 +9,13 @@ const inter = Inter({
 
 export const metadata = {
   title: "MinionAH OG Generator",
-  description: "MinionAH Open Graph image generator",
+  description: "This project generates Open Graph images for https://minionah.com.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  openGraph: {
+    title: "MinionAH OG Generator",
+    description: "This project generates Open Graph images for https://minionah.com.",
+    images: [{ url: "/assets/images/ogBanner.png" }],
+  },
 };
 
 export default function RootLayout({
