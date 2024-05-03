@@ -28,6 +28,10 @@ export async function GET(
         price: true,
         amount: true,
       },
+      cacheStrategy: {
+        ttl: 30,
+        swr: 60
+      }
     });
 
     return Response.json(data);

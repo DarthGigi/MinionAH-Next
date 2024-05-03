@@ -13,6 +13,10 @@ export async function GET(
         id: true,
         username: true,
       },
+      cacheStrategy: {
+        ttl: 30,
+        swr: 60
+      }
     });
 
     return Response.json(data);
