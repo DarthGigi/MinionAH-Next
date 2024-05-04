@@ -2,31 +2,28 @@ import { prisma } from "~/server/prisma";
 
 export const runtime = "edge";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { minionID: string } },
-) {
+export async function GET(request: Request, { params }: { params: { minionID: string } }) {
   try {
     const data = await prisma.auction.findUnique({
       where: {
-        id: params.minionID,
+        id: params.minionID
       },
       select: {
         minion: {
           select: {
             id: true,
             name: true,
-            generator_tier: true,
-          },
+            generator_tier: true
+          }
         },
         user: {
           select: {
             id: true,
-            username: true,
-          },
+            username: true
+          }
         },
         price: true,
-        amount: true,
+        amount: true
       },
       cacheStrategy: {
         ttl: 30,
@@ -38,7 +35,7 @@ export async function GET(
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: "Failed to fetch auction" }), {
-      status: 500,
+      status: 500
     });
   }
 }

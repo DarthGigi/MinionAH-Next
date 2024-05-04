@@ -2,14 +2,10 @@
 const config = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: true,
+    project: true
   },
   plugins: ["@typescript-eslint"],
-  extends: [
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked",
-  ],
+  extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended-type-checked", "plugin:@typescript-eslint/stylistic-type-checked"],
   rules: {
     // These opinionated rules are enabled in stylistic-type-checked above.
     // Feel free to reconfigure them to your own preference.
@@ -20,21 +16,21 @@ const config = {
       "warn",
       {
         prefer: "type-imports",
-        fixStyle: "inline-type-imports",
-      },
+        fixStyle: "inline-type-imports"
+      }
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "@typescript-eslint/require-await": "off",
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
-        checksVoidReturn: { attributes: false },
-      },
+        checksVoidReturn: { attributes: false }
+      }
     ],
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@next/next/no-img-element": "off",
-    "jsx-a11y/alt-text": "off",
-  },
+    "jsx-a11y/alt-text": "off"
+  }
 };
 
 module.exports = config;

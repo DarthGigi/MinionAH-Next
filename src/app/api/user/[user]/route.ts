@@ -2,16 +2,13 @@ import { prisma } from "~/server/prisma";
 
 export const runtime = "edge";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { user: string } },
-) {
+export async function GET(request: Request, { params }: { params: { user: string } }) {
   try {
     const data = await prisma.user.findUnique({
       where: { username: params.user },
       select: {
         id: true,
-        username: true,
+        username: true
       },
       cacheStrategy: {
         ttl: 30,
@@ -23,7 +20,7 @@ export async function GET(
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: "Failed to fetch user" }), {
-      status: 500,
+      status: 500
     });
   }
 }

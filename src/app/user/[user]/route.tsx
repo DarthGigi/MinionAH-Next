@@ -6,50 +6,37 @@ import { UserTemplate } from "~/lib/components/user";
 
 export const runtime = "edge";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { user: string } },
-) {
+export async function GET(request: Request, { params }: { params: { user: string } }) {
   try {
     const { searchParams } = new URL(request.url);
-    const minecraftFont: boolean =
-      searchParams.get("minecraftFont") !== "false";
+    const minecraftFont: boolean = searchParams.get("minecraftFont") !== "false";
     let fonts: FontOptions[] | undefined = undefined;
 
     if (minecraftFont) {
-      const minecraftFontData = await fetch(
-        new URL("/public/assets/fonts/minecraft.ttf", import.meta.url),
-      ).then((res) => res.arrayBuffer());
+      const minecraftFontData = await fetch(new URL("/public/assets/fonts/minecraft.ttf", import.meta.url)).then((res) => res.arrayBuffer());
       fonts = [
         {
           name: "Minecraft",
-          data: minecraftFontData,
-        },
+          data: minecraftFontData
+        }
       ];
     } else {
-      const fontData400 = await fetch(
-        new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url),
-      ).then((res) => res.arrayBuffer());
+      const fontData400 = await fetch(new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 
       fonts = [
         {
           name: "Inter",
           data: fontData400,
           weight: 400,
-          style: "normal",
-        },
+          style: "normal"
+        }
       ];
     }
 
-    const user = await fetch(
-      `https://og.minionah.com/api/user/${params.user}`,
-    ).then((res) => res.json());
+    const user = await fetch(`https://og.minionah.com/api/user/${params.user}`).then((res) => res.json());
 
     if (!user) {
-      return generateErrorResponse(
-        "User not found",
-        `The user could not be found`,
-      );
+      return generateErrorResponse("User not found", `The user could not be found`);
     }
 
     try {
@@ -57,20 +44,14 @@ export async function GET(
         height: 630,
         width: 1200,
         headers,
-        fonts,
+        fonts
       });
     } catch (error) {
       console.error(error);
-      return generateErrorResponse(
-        "Something went wrong",
-        "Something went wrong while trying to generate the image",
-      );
+      return generateErrorResponse("Something went wrong", "Something went wrong while trying to generate the image");
     }
   } catch (error) {
     console.error(error);
-    return generateErrorResponse(
-      "Something went wrong",
-      "Something went wrong while trying to generate the image",
-    );
+    return generateErrorResponse("Something went wrong", "Something went wrong while trying to generate the image");
   }
 }

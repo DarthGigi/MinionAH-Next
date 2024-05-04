@@ -10,13 +10,13 @@ export const env = createEnv({
     DATABASE_URL: z
       .string()
       .url()
-      .refine(
-        (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
-        "You forgot to change the default URL"
-      ),
-    NODE_ENV: z
-      .enum(["development", "test", "production"])
-      .default("development"),
+      .refine((str) => !str.includes("YOUR_MYSQL_URL_HERE"), "You forgot to change the default URL"),
+    DIRECT_DATABASE_URL: z
+      .string()
+      .url()
+      .refine((str) => !str.includes("YOUR_MYSQL_URL_HERE"), "You forgot to change the default URL"),
+    NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+    RESEND_API_KEY: z.string().default("")
   },
 
   /**
@@ -34,7 +34,9 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
+    DIRECT_DATABASE_URL: process.env.DIRECT_DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+    RESEND_API_KEY: process.env.RESEND_API_KEY
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
@@ -46,5 +48,5 @@ export const env = createEnv({
    * Makes it so that empty strings are treated as undefined.
    * `SOME_VAR: z.string()` and `SOME_VAR=''` will throw an error.
    */
-  emptyStringAsUndefined: true,
+  emptyStringAsUndefined: true
 });
