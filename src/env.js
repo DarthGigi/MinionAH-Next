@@ -18,7 +18,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     RESEND_API_KEY: z.string().default(""),
     BASE_URL: z.string().default("minionah.com"),
-    MINIONAH_SECRET: z.string().default(""),
+    MINIONAH_SECRET: z.string().default("")
   },
 
   /**
@@ -40,7 +40,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     BASE_URL: process.env.BASE_URL,
-    MINIONAH_SECRET: process.env.MINIONAH_SECRET,
+    MINIONAH_SECRET: process.env.MINIONAH_SECRET
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
