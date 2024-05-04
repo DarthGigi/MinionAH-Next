@@ -3,49 +3,24 @@ export default function HomePage() {
     <main className="flex min-h-screen flex-col items-center justify-center text-white">
       <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          <a
-            href="https://minionah.com"
-            target="_blank"
-            className="underline underline-offset-1"
-          >
+          <a href="https://minionah.com" target="_blank" className="underline underline-offset-1">
             MinionAH{" "}
           </a>
-          OG Generator
+          Next
         </h1>
         <p className="text-center text-2xl">
-          This project generates Open Graph images for{" "}
-          <a
-            href="https://minionah.com"
-            target="_blank"
-            className="underline underline-offset-1"
-          >
-            MinionAH
-          </a>{" "}
-          on the{" "}
-          <a
-            href="https://vercel.com/docs/functions/edge-functions"
-            target="_blank"
-            className="underline underline-offset-1"
-          >
-            Edge
-          </a>
-          , deployed on{" "}
-          <a
-            href="https://vercel.com"
-            target="_blank"
-            className="underline underline-offset-1"
-          >
-            Vercel
-          </a>
-          .
-          <br />
-          <br />
+          This is a NextJS project for MinionAH. It is used to build stuff MinionAH needs that can't be done with Svelte/SvelteKit because a package isn't available or the ecosystem isn't mature enough.
+        </p>
+        <p className="text-left text-2xl">
+          This project currently includes:
+          <ul className="list-disc list-inside">
+            <li>OG - This is an Open Graph image generator</li>
+            <li>Resend - This is an email sending service</li>
+          </ul>
+        </p>
+        <p className="text-center text-2xl">
           Open-source on{" "}
-          <a
-            href="https://github.com/DarthGigi/MinionAH-OG"
-            target="_blank"
-            className="underline underline-offset-1"
-          >
+          <a href="https://github.com/DarthGigi/MinionAH-OG" target="_blank" className="underline underline-offset-1">
             GitHub
           </a>
           .
