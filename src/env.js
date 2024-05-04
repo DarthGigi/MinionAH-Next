@@ -16,7 +16,9 @@ export const env = createEnv({
       .url()
       .refine((str) => !str.includes("YOUR_MYSQL_URL_HERE"), "You forgot to change the default URL"),
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-    RESEND_API_KEY: z.string().default("")
+    RESEND_API_KEY: z.string().default(""),
+    BASE_URL: z.string().default("minionah.com"),
+    MINIONAH_SECRET: z.string().default(""),
   },
 
   /**
@@ -36,7 +38,9 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     DIRECT_DATABASE_URL: process.env.DIRECT_DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
-    RESEND_API_KEY: process.env.RESEND_API_KEY
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
+    BASE_URL: process.env.BASE_URL,
+    MINIONAH_SECRET: process.env.MINIONAH_SECRET,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
