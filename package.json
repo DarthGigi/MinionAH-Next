@@ -1,25 +1,38 @@
 {
-  "name": "minionah-og",
+  "name": "minionah-next",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "next build",
+    "build:dev": "dotenv -e .env.development -- next build",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "dev": "next dev",
+    "dev": "dotenv -e .env.development -- next dev",
+    "dev:email": "dotenv -e .env.development -- email dev",
     "postinstall": "prisma generate --no-engine",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "start:dev": "dotenv -e .env.development -- next start",
+    "format": "prettier --write .",
+    "prisma:generate:dev": "dotenv -e .env.development -- prisma generate",
+    "prisma:generate": "prisma generate",
+    "prisma:db:push:dev": "dotenv -e .env.development -- prisma db push",
+    "prisma:db:push": "prisma db push",
+    "prisma:studio:dev": "dotenv -e .env.development -- prisma studio",
+    "prisma:studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
     "@prisma/extension-accelerate": "^1.0.0",
+    "@react-email/components": "^0.0.17",
     "@t3-oss/env-nextjs": "^0.10.1",
     "next": "^14.2.3",
     "numerable": "^0.3.15",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-email": "^2.1.2",
+    "resend": "^3.2.0",
     "zod": "^3.23.6"
   },
   "devDependencies": {
