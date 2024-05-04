@@ -1,6 +1,12 @@
 /** @type {import('prettier').Config & import('prettier-plugin-tailwindcss').PluginOptions} */
 const config = {
-  plugins: ["prettier-plugin-tailwindcss"],
+  useTabs: false,
+  tabWidth: 2,
+  singleQuote: false,
+  trailingComma: "none",
+  bracketSameLine: true,
+  printWidth: 999999,
+  plugins: ["prettier-plugin-tailwindcss"]
 };
 
 export default config;
