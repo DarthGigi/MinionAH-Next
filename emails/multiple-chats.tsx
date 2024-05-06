@@ -27,12 +27,12 @@ export const MultipleChatsEmail = ({ username, chatsAmount }: MultipleChatsEmail
               While you are away, you received {chatsAmount} new {chatsAmount > 1 ? "messages" : "message"} on MinionAH.
             </Text>
 
-            <Section className="text-center mt-[40px]">
+            <Section className="mt-[40px] text-center">
               <Button className="rounded bg-[#e6e6e6] px-5 py-3 text-center text-[12px] font-semibold text-[#171717] no-underline" href={`${baseUrl}/profile/chats`}>
                 View {chatsAmount > 1 ? "Messages" : "Message"}
               </Button>
             </Section>
-            <Hr className="mx-0 w-full border mt-[26px] mb-[20px] border-solid border-[#404040]" />
+            <Hr className="mx-0 mb-[20px] mt-[26px] w-full border border-solid border-[#404040]" />
             <Section className="text-center">
               <Text className="m-0 text-[12px] leading-[24px] text-[#666666]">
                 Don't want to receive these emails? <br />

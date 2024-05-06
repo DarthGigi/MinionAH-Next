@@ -44,7 +44,7 @@ export const UserChatEmail = ({ username, chatByUserImage, chatByUsername }: Use
                 View Message
               </Button>
             </Section>
-            <Hr className="mx-0 w-full border mt-[26px] mb-[20px] border-solid border-[#404040]" />
+            <Hr className="mx-0 mb-[20px] mt-[26px] w-full border border-solid border-[#404040]" />
             <Section className="text-center">
               <Text className="m-0 text-[12px] leading-[24px] text-[#666666]">
                 Don't want to receive these emails? <br />
