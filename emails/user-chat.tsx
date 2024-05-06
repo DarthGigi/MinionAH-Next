@@ -39,12 +39,12 @@ export const UserChatEmail = ({ username, chatByUserImage, chatByUsername }: Use
                 </Column>
               </Row>
             </Section>
-            <Section className="mb-[32px] mt-[32px] text-center">
+            <Section className="mt-[32px] text-center">
               <Button className="rounded bg-[#e6e6e6] px-5 py-3 text-center text-[12px] font-semibold text-[#171717] no-underline" href={`${baseUrl}/user/${chatByUsername}/chat`}>
                 View Message
               </Button>
             </Section>
-            <Hr className="mx-0 my-[26px] w-full border border-solid border-[#404040]" />
+            <Hr className="mx-0 w-full border mt-[26px] mb-[20px] border-solid border-[#404040]" />
             <Section className="text-center">
               <Text className="m-0 text-[12px] leading-[24px] text-[#666666]">
                 Don't want to receive these emails? <br />
