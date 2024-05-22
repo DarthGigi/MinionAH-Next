@@ -2,7 +2,7 @@ import { prisma } from "~/server/prisma";
 
 export const runtime = "edge";
 
-export async function GET(request: Request, { params }: { params: { minionID: string } }) {
+export async function GET({ params }: { params: { minionID: string } }) {
   try {
     const data = await prisma.auction.findUnique({
       where: {
