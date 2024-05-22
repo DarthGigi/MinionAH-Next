@@ -24,7 +24,7 @@ export const MultipleChatsEmail = ({ username, chatsAmount }: MultipleChatsEmail
             <Heading className="mx-0 my-[30px] p-0 text-center text-[24px] font-normal text-[#e6e6e6]">{chatsAmount > 1 ? "You have new messages" : "You have a new message"}</Heading>
             <Text className="text-[14px] leading-[24px] text-[#e6e6e6]">Hello {username},</Text>
             <Text className="text-[14px] leading-[24px] text-[#e6e6e6]">
-              While you are away, you received {chatsAmount} new {chatsAmount > 1 ? "messages" : "message"} on MinionAH.
+              While you're away, you received {chatsAmount} new {chatsAmount > 1 ? "messages" : "message"} on MinionAH.
             </Text>
 
             <Section className="mt-[40px] text-center">
