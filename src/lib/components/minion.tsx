@@ -45,9 +45,7 @@ export const MinionTemplate = ({
                 <img tw="absolute left-4 h-10 w-10" src={`data:image/png;base64,${btoa(String.fromCharCode(...new Uint8Array(coinImageData)))}`} />
                 <div tw="flex flex-col justify-center items-center">
                   {formatNumber(minion.price)}
-                  {minion.amount! > 1 && (
-                    <span tw="text-2xl text-[#e6e6e6]/50">/each</span>
-                  )}
+                  {minion.amount! > 1 && <span tw="text-2xl text-[#e6e6e6]/50">/each</span>}
                 </div>
               </span>
             </div>
