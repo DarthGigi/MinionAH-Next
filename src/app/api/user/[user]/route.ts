@@ -8,7 +8,18 @@ export async function GET(_request: Request, { params }: { params: { user: strin
       where: { username: params.user },
       select: {
         id: true,
-        username: true
+        username: true,
+        settings: {
+          select: {
+            profileSettings: {
+              select: {
+                bio: true,
+                urls: true,
+                email: false
+              }
+            }
+          }
+        }
       },
       cacheStrategy: {
         ttl: 30,
