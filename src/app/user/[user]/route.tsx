@@ -33,7 +33,7 @@ export async function GET(request: Request, { params }: { params: { user: string
       ];
     }
 
-    const user = await fetch(`https://og.minionah.com/api/user/${params.user}`).then((res) => res.json());
+    const user = await fetch(`https://next.minionah.com/api/user/${params.user}`).then((res) => res.json());
 
     if (!user) {
       return generateErrorResponse("User not found", `The user could not be found`);

@@ -34,7 +34,7 @@ export async function GET(request: Request, { params }: { params: { minionID: st
       ];
     }
 
-    const minion = await fetch(`https://og.minionah.com/api/minion/${params.minionID}`).then((res) => res.json());
+    const minion = await fetch(`https://next.minionah.com/api/minion/${params.minionID}`).then((res) => res.json());
 
     if (!minion) {
       return generateErrorResponse("Minion not found", `The minion could not be found`, fonts);
