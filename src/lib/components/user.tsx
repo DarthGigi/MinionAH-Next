@@ -25,8 +25,8 @@ export const UserTemplate = ({
           {user.settings?.profileSettings?.bio && <span tw="mt-3 text-sm text-[#a3a3a3]">{user.settings.profileSettings.bio}</span>}
           {user.settings?.profileSettings?.urls && (
             <div tw="mt-10 flex flex-wrap">
-              {user.settings?.profileSettings?.urls?.map((url) => (
-                <div tw="flex overflow-hidden rounded-full">
+              {user.settings?.profileSettings?.urls?.map((url, index) => (
+                <div key={index} tw="flex overflow-hidden rounded-full">
                   <img tw="h-16 w-16 mx-4 rounded-full bg-[#404040] p-0.5" height="64px" width="64px" src={`https://www.google.com/s2/favicons?sz=256&domain_url=${url}`} />
                 </div>
               ))}
