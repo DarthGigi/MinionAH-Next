@@ -24,7 +24,7 @@ export const MultipleChatsEmail = ({ username, chatsAmount }: MultipleChatsEmail
             <Heading className="mx-0 my-[30px] p-0 text-center text-[24px] font-normal text-[#e6e6e6]">{chatsAmount > 1 ? "You have new messages" : "You have a new message"}</Heading>
             <Text className="text-[14px] leading-[24px] text-[#e6e6e6]">Hello {username},</Text>
             <Text className="text-[14px] leading-[24px] text-[#e6e6e6]">
-              While you're away, you received {chatsAmount} new {chatsAmount > 1 ? "messages" : "message"} on MinionAH.
+              While you&apos;re away, you received {chatsAmount} new {chatsAmount > 1 ? "messages" : "message"} on MinionAH.
             </Text>
 
             <Section className="mt-[40px] text-center">
@@ -35,7 +35,7 @@ export const MultipleChatsEmail = ({ username, chatsAmount }: MultipleChatsEmail
             <Hr className="mx-0 mb-[20px] mt-[26px] w-full border border-solid border-[#404040]" />
             <Section className="text-center">
               <Text className="m-0 text-[12px] leading-[24px] text-[#666666]">
-                Don't want to receive these emails? <br />
+                Don&apos;t want to receive these emails? <br />
                 <Link href={`${baseUrl}/settings/notifications`} className="text-[#666666] underline">
                   Manage your notification settings
                 </Link>
