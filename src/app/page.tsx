@@ -9,7 +9,7 @@ export default function HomePage() {
           Next
         </h1>
         <p className="text-center text-2xl">
-          This is a NextJS project for MinionAH. It is used to build stuff MinionAH needs that can't be done with Svelte/SvelteKit because a package isn't available or the ecosystem isn't mature enough.
+          This is a NextJS project for MinionAH. It is used to build stuff MinionAH needs that can&apos;t be done with Svelte/SvelteKit because a package isn&apos;t available or the ecosystem isn&apos;t mature enough.
           <br />
           <br />
           This project currently includes:

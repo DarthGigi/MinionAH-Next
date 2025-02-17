@@ -1,12 +1,13 @@
 import type { Font as FontOptions } from "next/dist/compiled/@vercel/og/satori";
 import { ImageResponse } from "next/og";
+import { MinionTemplate } from "~/lib/components/minion";
 import { generateErrorResponse } from "~/lib/errors/errorResponse";
 import { headers } from "~/lib/headers";
-import { MinionTemplate } from "~/lib/components/minion";
 
 export const runtime = "edge";
 
-export async function GET(request: Request, { params }: { params: { minionID: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ minionID: string }> }) {
+  const params = await props.params;
   try {
     const { searchParams } = new URL(request.url);
     const minecraftFont: boolean = searchParams.get("minecraftFont") !== "false";
@@ -14,7 +15,7 @@ export async function GET(request: Request, { params }: { params: { minionID: st
     let fonts: FontOptions[] | undefined = undefined;
 
     if (minecraftFont) {
-      const minecraftFontData = await fetch(new URL("/public/assets/fonts/minecraft.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+      const minecraftFontData = await fetch(new URL("public/assets/fonts/minecraft.ttf", import.meta.url)).then((res) => res.arrayBuffer());
       fonts = [
         {
           name: "Minecraft",
@@ -22,7 +23,7 @@ export async function GET(request: Request, { params }: { params: { minionID: st
         }
       ];
     } else {
-      const fontData400 = await fetch(new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+      const fontData400 = await fetch(new URL("public/assets/fonts/Inter-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 
       fonts = [
         {
@@ -39,7 +40,7 @@ export async function GET(request: Request, { params }: { params: { minionID: st
     if (!minion) {
       return generateErrorResponse("Minion not found", `The minion could not be found`, fonts);
     }
-    const coinImageData = await fetch(new URL("/public/assets/images/coin.png", import.meta.url)).then((res) => res.arrayBuffer());
+    const coinImageData = await fetch(new URL("public/assets/images/coin.png", import.meta.url)).then((res) => res.arrayBuffer());
     return new ImageResponse(MinionTemplate({ minion, coinImageData, romanNumerals }), {
       height: 630,
       width: 1200,

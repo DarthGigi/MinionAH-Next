@@ -2,7 +2,8 @@ import { prisma } from "~/server/prisma";
 
 export const runtime = "edge";
 
-export async function GET(_request: Request, { params }: { params: { minionID: string } }) {
+export async function GET(_request: Request, props: { params: Promise<{ minionID: string }> }) {
+  const params = await props.params;
   try {
     const data = await prisma.auction.findUnique({
       where: {
@@ -32,7 +33,7 @@ export async function GET(_request: Request, { params }: { params: { minionID: s
     });
 
     return Response.json(data);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(error);
     return new Response(JSON.stringify({ error: "Failed to fetch auction" }), {
       status: 500

@@ -1,19 +1,20 @@
 import type { Font as FontOptions } from "next/dist/compiled/@vercel/og/satori";
 import { ImageResponse } from "next/og";
+import { UserTemplate } from "~/lib/components/user";
 import { generateErrorResponse } from "~/lib/errors/errorResponse";
 import { headers } from "~/lib/headers";
-import { UserTemplate } from "~/lib/components/user";
 
 export const runtime = "edge";
 
-export async function GET(request: Request, { params }: { params: { user: string } }) {
+export async function GET(request: Request, props: { params: Promise<{ user: string }> }) {
+  const params = await props.params;
   try {
     const { searchParams } = new URL(request.url);
     const minecraftFont: boolean = searchParams.get("minecraftFont") !== "false";
     let fonts: FontOptions[] | undefined = undefined;
 
     if (minecraftFont) {
-      const minecraftFontData = await fetch(new URL("/public/assets/fonts/minecraft.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+      const minecraftFontData = await fetch(new URL("public/assets/fonts/minecraft.ttf", import.meta.url)).then((res) => res.arrayBuffer());
       fonts = [
         {
           name: "Minecraft",
@@ -21,14 +22,14 @@ export async function GET(request: Request, { params }: { params: { user: string
         }
       ];
     } else {
-      const fontData400 = await fetch(new URL("/public/assets/fonts/Inter-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
+      const fontData400 = await fetch(new URL("public/assets/fonts/Inter-Regular.ttf", import.meta.url)).then((res) => res.arrayBuffer());
 
       fonts = [
         {
-          name: "Inter",
           data: fontData400,
           weight: 400,
-          style: "normal"
+          style: "normal",
+          name: "Inter"
         }
       ];
     }

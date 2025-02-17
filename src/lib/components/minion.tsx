@@ -1,5 +1,5 @@
-import { formatNumber } from "~/lib/utilities";
 import type { ReactElement } from "react";
+import { formatNumber } from "~/lib/utilities";
 
 export const MinionTemplate = ({
   minion,
@@ -21,19 +21,19 @@ export const MinionTemplate = ({
   };
   coinImageData: ArrayBuffer;
   romanNumerals: boolean;
-}): ReactElement => {
+}): ReactElement<unknown> => {
   return (
     <div tw="flex h-full w-full flex-col items-center justify-center bg-[#171717] py-6">
       <div tw="flex w-full max-w-2xl flex-col rounded-lg border h-full border-[#404040] bg-[#262626] shadow">
         <div tw="mx-auto flex flex-col items-center rounded py-10">
           <div tw="flex mb-3 items-center h-44 w-44 overflow-hidden p-6 justify-center rounded-full bg-[#404040]">
-            <img tw="h-40 w-40 p-4" src={`https://res.cloudinary.com/minionah/image/upload/v1/users/avatars/${minion.user.id}`} />
+            <img tw="h-40 w-40 p-4" src={`https://res.cloudinary.com/minionah/image/upload/v1/users/avatars/${minion.user.id}`} alt="" />
           </div>
           <span tw="text-4xl font-medium text-[#fafafa]">{minion.user.username}</span>
         </div>
         <div tw="flex w-full mt-2 flex-col items-center justify-center">
           <div tw="flex h-24 w-24 rounded-full bg-[#404040] p-1">
-            <img tw="h-full w-full" src={`https://res.cloudinary.com/minionah/image/upload/v1/minions/head/${minion.minion.id}`} />
+            <img tw="h-full w-full" src={`https://res.cloudinary.com/minionah/image/upload/v1/minions/head/${minion.minion.id}`} alt="" />
           </div>
           <span tw="text-3xl mt-3 font-medium text-[#fafafa]">{minion.minion.name.replace(/ [IVX]+$/, "")}</span>
           <div tw="mx-auto mt-4 flex w-full items-center justify-center border-t border-[#404040]">
@@ -42,7 +42,7 @@ export const MinionTemplate = ({
             </div>
             <div tw="relative border-l border-r border-[#404040] -ml-px flex w-0 flex-1 overflow-hidden">
               <span tw="relative w-0 flex-1 items-center justify-center overflow-hidden py-4 text-2xl font-medium text-[#e6e6e6]">
-                <img tw="absolute left-4 h-10 w-10" src={`data:image/png;base64,${btoa(String.fromCharCode(...new Uint8Array(coinImageData)))}`} />
+                <img tw="absolute left-4 h-10 w-10" src={`data:image/png;base64,${btoa(String.fromCharCode(...new Uint8Array(coinImageData)))}`} alt="" />
                 <div tw="flex flex-col justify-center items-center">
                   {formatNumber(minion.price)}
                   {minion.amount! > 1 && <span tw="text-2xl text-[#e6e6e6]/50">/each</span>}
