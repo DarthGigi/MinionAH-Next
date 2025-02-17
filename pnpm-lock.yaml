@@ -58,6 +58,9 @@ importers:
       '@next/eslint-plugin-next':
         specifier: ^15.1.7
         version: 15.1.7
+      '@react-email/render':
+        specifier: 1.0.5
+        version: 1.0.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/eslint':
         specifier: ^9.6.1
         version: 9.6.1
