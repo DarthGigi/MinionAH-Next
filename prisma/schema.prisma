@@ -15,6 +15,8 @@ model User {
   sessions     Session[]
   key          Key[]
   loggedInAt   DateTime      @default(now()) @updatedAt
+  createdAt    DateTime      @default(now())
+  syncedAt     DateTime?
   username     String        @unique
   auctions     Auction[]
   chatsAsUser1 Chat[]        @relation("user1")
@@ -86,40 +88,50 @@ model Minion {
 }
 
 model Auction {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   minion_id   String
   user_id     String
-  user        User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  minion      Minion   @relation(fields: [minion_id], references: [id], onDelete: Cascade)
-  hasInfusion Boolean  @default(false)
+  user        User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  minion      Minion    @relation(fields: [minion_id], references: [id], onDelete: Cascade)
+  hasInfusion Boolean   @default(false)
+  hasFreeWill Boolean   @default(false)
   price       Float
   amount      Int
-  timeCreated DateTime @default(now()) @updatedAt
+  timeCreated DateTime  @default(now()) @updatedAt
+  timeBumped  DateTime?
 
   @@index([user_id])
   @@index([minion_id])
 }
 
 model Chat {
-  id        String    @id @default(cuid())
-  user1_id  String
-  user2_id  String
-  user1     User      @relation("user1", fields: [user1_id], references: [id], onDelete: Cascade)
-  user2     User      @relation("user2", fields: [user2_id], references: [id], onDelete: Cascade)
-  messages  Message[]
-  createdAt DateTime  @default(now())
-  user1Read Boolean   @default(false)
-  user2Read Boolean   @default(false)
+  id           String    @id @default(cuid())
+  user1_id     String
+  user2_id     String
+  user1        User      @relation("user1", fields: [user1_id], references: [id], onDelete: Cascade)
+  user2        User      @relation("user2", fields: [user2_id], references: [id], onDelete: Cascade)
+  messages     Message[]
+  createdAt    DateTime  @default(now())
+  user1Read    Boolean   @default(false)
+  user2Read    Boolean   @default(false)
+  user1Emailed Boolean   @default(false)
+  user2Emailed Boolean   @default(false)
+}
+
+enum MessageType {
+  TEXT
+  AUCTION
 }
 
 model Message {
-  id        String   @id @default(cuid())
+  id        String      @id @default(cuid())
   chat_id   String
   user_id   String
   content   String
-  chat      Chat     @relation(fields: [chat_id], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  type      MessageType @default(TEXT)
+  chat      Chat        @relation(fields: [chat_id], references: [id], onDelete: Cascade)
+  user      User        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  createdAt DateTime    @default(now())
 
   @@index([chat_id])
   @@index([user_id])
