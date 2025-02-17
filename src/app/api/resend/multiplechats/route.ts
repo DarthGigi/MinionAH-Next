@@ -1,4 +1,5 @@
 import { MultipleChatsEmail } from "$emails/index";
+import { render } from "@react-email/render";
 import { Resend } from "resend";
 import { z } from "zod";
 import { env } from "~/env";
@@ -34,7 +35,13 @@ export async function POST(request: Request) {
       react: MultipleChatsEmail({
         username,
         chatsAmount
-      })
+      }),
+      text: await render(
+        MultipleChatsEmail({
+          username,
+          chatsAmount
+        })
+      )
     });
 
     return Response.json(data);

@@ -1,4 +1,5 @@
 import { UserChatEmail } from "$emails/index";
+import { render } from "@react-email/render";
 import { Resend } from "resend";
 import { z } from "zod";
 import { env } from "~/env";
@@ -36,7 +37,14 @@ export async function POST(request: Request) {
         username,
         chatByUserImage,
         chatByUsername
-      })
+      }),
+      text: await render(
+        UserChatEmail({
+          username,
+          chatByUserImage,
+          chatByUsername
+        })
+      )
     });
 
     return Response.json(data);
