@@ -10,7 +10,7 @@
     ".env*": "properties"
   },
   "git.autofetch": true,
-  "tailwindCSS.classAttributes": ["class", "class:*", "class:name"],
+  "tailwindCSS.classAttributes": ["class", "class:*", "class:name", "className"],
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.includeLanguages": {
     "html": "html",
