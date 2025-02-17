@@ -34,7 +34,9 @@ export const UserChatEmail = ({ username, chatByUserImage, chatByUsername }: Use
               <Row>
                 <Column align="center">
                   <Link href={`${baseUrl}/users/${chatByUsername}`} className="text-white underline">
-                    <Img className="size-full overflow-visible rounded-full bg-[#404040] p-2" src={chatByUserImage} width="72" height="72" />
+                    <div className="w-fit rounded-full bg-[#404040] p-6">
+                      <Img className="aspect-square size-[4.5rem] overflow-visible" src={chatByUserImage} width="72" height="72" />
+                    </div>
                   </Link>
                 </Column>
               </Row>
@@ -47,7 +49,7 @@ export const UserChatEmail = ({ username, chatByUserImage, chatByUsername }: Use
             <Hr className="mx-0 mb-[20px] mt-[26px] w-full border border-solid border-[#404040]" />
             <Section className="text-center">
               <Text className="m-0 text-[12px] leading-[24px] text-[#666666]">
-                Don't want to receive these emails? <br />
+                Don&apos;t want to receive these emails? <br />
                 <Link href={`${baseUrl}/settings/notifications`} className="text-[#666666] underline">
                   Manage your notification settings
                 </Link>
