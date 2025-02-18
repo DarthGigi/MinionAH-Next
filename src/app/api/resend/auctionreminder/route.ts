@@ -3,6 +3,7 @@ import { render } from "@react-email/render";
 import { type CreateBatchOptions, type CreateBatchResponse, type CreateEmailOptions, Resend } from "resend";
 import { z } from "zod";
 import { env } from "~/env";
+import { prisma } from "~/server/prisma";
 
 const resend = new Resend(env.RESEND_API_KEY);
 const BATCH_SIZE = 100; // Resend's maximum batch size
@@ -17,12 +18,24 @@ export async function POST(request: Request) {
       }
     );
   }
+
+  let allEmails:
+    | {
+        username: string;
+        auctionId: string;
+        auctionAmount: string;
+        auctionName: string;
+        minionId: string;
+        userEmail: string;
+      }[]
+    | undefined = undefined;
   try {
     const body = await request.json();
 
     // Validate the request body
-    const allEmails = z
+    allEmails = z
       .object({
+        auctionId: z.string(),
         username: z.string(),
         auctionAmount: z.string(),
         auctionName: z.string(),
@@ -61,11 +74,56 @@ export async function POST(request: Request) {
       requests.push(resend.batch.send(emailBatch));
     }
 
-    const responses = await Promise.all(requests);
+    const responses = await prisma
+      .$transaction(async (tx) => {
+        const results = await Promise.allSettled(requests);
+        const now = new Date();
+
+        const response = await tx.auction.updateMany({
+          where: {
+            id: {
+              in: allEmails?.map((email) => email.auctionId)
+            }
+          },
+          data: {
+            timeEmailed: now
+          }
+        });
+
+        console.log(`Updated ${response.count} auctions`);
+
+        return results;
+      })
+      .catch((error) => {
+        console.error("Transaction failed:", error);
+        throw new Error("Failed to send emails and update database");
+      });
 
     return Response.json({ success: true, responses });
   } catch (error) {
-    console.error(error);
-    return Response.json({ error });
+    console.error("Error details:", {
+      timestamp: new Date().toISOString(),
+      error:
+        error instanceof Error
+          ? {
+              message: error.message,
+              stack: error.stack,
+              name: error.name
+            }
+          : error,
+      context: {
+        emailCount: allEmails?.length ?? 0,
+        batchCount: Math.ceil((allEmails?.length ?? 0) / BATCH_SIZE)
+      }
+    });
+    return Response.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : "Unknown error occurred"
+      },
+      {
+        status: 500
+      }
+    );
   }
 }
