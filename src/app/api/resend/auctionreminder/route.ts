@@ -22,11 +22,16 @@ export async function POST(request: Request) {
   let allEmails:
     | {
         username: string;
-        auctionId: string;
-        auctionAmount: string;
-        auctionName: string;
-        minionId: string;
         userEmail: string;
+        auctions: {
+          id: string;
+          name: string;
+          amount: string;
+          minion: {
+            id: string;
+            name: string;
+          };
+        }[];
       }[]
     | undefined = undefined;
   try {
@@ -35,12 +40,19 @@ export async function POST(request: Request) {
     // Validate the request body
     allEmails = z
       .object({
-        auctionId: z.string(),
         username: z.string(),
-        auctionAmount: z.string(),
-        auctionName: z.string(),
-        minionId: z.string(),
-        userEmail: z.string()
+        userEmail: z.string(),
+        auctions: z.array(
+          z.object({
+            id: z.string(),
+            name: z.string(),
+            amount: z.string(),
+            minion: z.object({
+              id: z.string(),
+              name: z.string()
+            })
+          })
+        )
       })
       .array()
       .parse(body);
@@ -56,15 +68,13 @@ export async function POST(request: Request) {
         batch.map(async (email) => {
           const emailComponent = AuctionReminderEmail({
             username: email.username,
-            auctionAmount: email.auctionAmount,
-            auctionName: email.auctionName,
-            minionId: email.minionId
+            auctions: email.auctions
           });
 
           return {
             from: "MinionAH <notifications@minionah.com>",
             to: email.userEmail,
-            subject: `Your ${email.auctionAmount} ${email.auctionName} auction is about to expire!`,
+            subject: `${email.auctions.length} auction${email.auctions.length > 1 ? "s" : ""} of yours ${email.auctions.length > 1 ? "are" : "is"} about to expire!`,
             react: emailComponent,
             text: await render(emailComponent)
           } satisfies CreateEmailOptions;
@@ -82,7 +92,7 @@ export async function POST(request: Request) {
         const response = await tx.auction.updateMany({
           where: {
             id: {
-              in: allEmails?.map((email) => email.auctionId)
+              in: allEmails?.map((email) => email.auctions.map((a) => a.id)).flat() ?? []
             }
           },
           data: {
