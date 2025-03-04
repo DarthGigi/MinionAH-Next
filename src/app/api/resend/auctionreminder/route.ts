@@ -25,12 +25,7 @@ export async function POST(request: Request) {
         userEmail: string;
         auctions: {
           id: string;
-          name: string;
-          amount: string;
-          minion: {
-            id: string;
-            name: string;
-          };
+          minionId: string;
         }[];
       }[]
     | undefined = undefined;
@@ -45,12 +40,7 @@ export async function POST(request: Request) {
         auctions: z.array(
           z.object({
             id: z.string(),
-            name: z.string(),
-            amount: z.string(),
-            minion: z.object({
-              id: z.string(),
-              name: z.string()
-            })
+            minionId: z.string()
           })
         )
       })

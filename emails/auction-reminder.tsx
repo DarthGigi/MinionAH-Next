@@ -5,12 +5,7 @@ export interface AuctionReminderEmailProps {
   username: string;
   auctions: {
     id: string;
-    name: string;
-    amount: string;
-    minion: {
-      id: string;
-      name: string;
-    };
+    minionId: string;
   }[];
 }
 
@@ -42,7 +37,7 @@ export const AuctionReminderEmail = ({ username, auctions }: AuctionReminderEmai
                     <Column key={auction.id} align="center">
                       <Link href={`${baseUrl}/profile`} className="text-white underline">
                         <div className="w-fit rounded-full bg-[#404040] p-6">
-                          <Img className="size-[4.5rem] overflow-visible" src={`https://res.cloudinary.com/minionah/image/upload/v1/minions/head/${auction.minion.id}`} width="72" height="72" />
+                          <Img className="size-[4.5rem] overflow-visible" src={`https://res.cloudinary.com/minionah/image/upload/v1/minions/head/${auction.minionId}`} width="72" height="72" />
                         </div>
                       </Link>
                     </Column>
@@ -76,48 +71,23 @@ AuctionReminderEmail.PreviewProps = {
   auctions: [
     {
       id: "1",
-      name: "Snow Minion VI",
-      amount: "123",
-      minion: {
-        id: "SNOW_GENERATOR_6",
-        name: "Snow Minion VI"
-      }
+      minionId: "SNOW_GENERATOR_6"
     },
     {
       id: "2",
-      name: "Snow Minion VII",
-      amount: "123",
-      minion: {
-        id: "SNOW_GENERATOR_7",
-        name: "Snow Minion VII"
-      }
+      minionId: "SNOW_GENERATOR_7"
     },
     {
       id: "3",
-      name: "Snow Minion VIII",
-      amount: "123",
-      minion: {
-        id: "SNOW_GENERATOR_8",
-        name: "Snow Minion VIII"
-      }
+      minionId: "SNOW_GENERATOR_8"
     },
     {
       id: "4",
-      name: "Snow Minion IX",
-      amount: "123",
-      minion: {
-        id: "SNOW_GENERATOR_9",
-        name: "Snow Minion IX"
-      }
+      minionId: "SNOW_GENERATOR_9"
     },
     {
       id: "5",
-      name: "Snow Minion X",
-      amount: "123",
-      minion: {
-        id: "SNOW_GENERATOR_10",
-        name: "Snow Minion X"
-      }
+      minionId: "SNOW_GENERATOR_10"
     }
   ]
 } as AuctionReminderEmailProps;
