@@ -32,6 +32,8 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
+    console.info(body, "body");
+
     // Validate the request body
     allEmails = z
       .object({
@@ -46,6 +48,9 @@ export async function POST(request: Request) {
       })
       .array()
       .parse(body);
+
+    console.info("allEmails", allEmails);
+    console.info("for prisma in", allEmails?.map((email) => email.auctions.map((a) => a.id)).flat() ?? []);
 
     const requests: Promise<CreateBatchResponse>[] = [];
 
