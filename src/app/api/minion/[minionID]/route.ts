@@ -25,10 +25,6 @@ export async function GET(_request: Request, props: { params: Promise<{ minionID
         },
         price: true,
         amount: true
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60
       }
     });
 

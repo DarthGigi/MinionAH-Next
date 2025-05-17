@@ -21,10 +21,6 @@ export async function GET(_request: Request, props: { params: Promise<{ user: st
             }
           }
         }
-      },
-      cacheStrategy: {
-        ttl: 30,
-        swr: 60
       }
     });
 
