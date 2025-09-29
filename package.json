@@ -20,9 +20,13 @@
     "prisma:db:push:dev": "dotenv -e .env.development -- prisma db push",
     "prisma:db:push": "prisma db push",
     "prisma:studio:dev": "dotenv -e .env.development -- prisma studio",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.9.0",
     "@prisma/client": "^6.4.1",
     "@react-email/components": "^0.0.33",
     "@t3-oss/env-nextjs": "^0.12.0",
@@ -32,6 +36,7 @@
     "react-dom": "19.0.0",
     "react-email": "^3.0.7",
     "resend": "^4.1.2",
+    "wrangler": "^4.40.2",
     "zod": "^3.24.2"
   },
   "devDependencies": {

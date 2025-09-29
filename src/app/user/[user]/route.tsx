@@ -4,7 +4,8 @@ import { UserTemplate } from "~/lib/components/user";
 import { generateErrorResponse } from "~/lib/errors/errorResponse";
 import { headers } from "~/lib/headers";
 
-export const runtime = "edge";
+// Removed edge runtime - not compatible with OpenNext for Cloudflare
+// export const runtime = "edge";
 
 export async function GET(request: Request, props: { params: Promise<{ user: string }> }) {
   const params = await props.params;
@@ -41,6 +42,7 @@ export async function GET(request: Request, props: { params: Promise<{ user: str
     }
 
     try {
+      // @ts-expect-error Ignore for now
       return new ImageResponse(UserTemplate({ user }), {
         height: 630,
         width: 1200,

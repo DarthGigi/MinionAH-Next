@@ -4,7 +4,8 @@ import { MinionTemplate } from "~/lib/components/minion";
 import { generateErrorResponse } from "~/lib/errors/errorResponse";
 import { headers } from "~/lib/headers";
 
-export const runtime = "edge";
+// Removed edge runtime - not compatible with OpenNext for Cloudflare
+// export const runtime = "edge";
 
 export async function GET(request: Request, props: { params: Promise<{ minionID: string }> }) {
   const params = await props.params;
@@ -41,6 +42,7 @@ export async function GET(request: Request, props: { params: Promise<{ minionID:
       return generateErrorResponse("Minion not found", `The minion could not be found`, fonts);
     }
     const coinImageData = await fetch(new URL("public/assets/images/coin.png", import.meta.url)).then((res) => res.arrayBuffer());
+    // @ts-expect-error Ignore for now
     return new ImageResponse(MinionTemplate({ minion, coinImageData, romanNumerals }), {
       height: 630,
       width: 1200,

@@ -7,7 +7,8 @@
   },
   "files.associations": {
     "*.css": "tailwindcss",
-    ".env*": "properties"
+    ".env*": "properties",
+    "wrangler.json": "jsonc"
   },
   "git.autofetch": true,
   "tailwindCSS.classAttributes": ["class", "class:*", "class:name", "className"],

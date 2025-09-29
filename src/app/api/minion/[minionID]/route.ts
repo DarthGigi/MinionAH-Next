@@ -1,6 +1,7 @@
 import { prisma } from "~/server/prisma";
 
-export const runtime = "edge";
+// Removed edge runtime - not compatible with OpenNext for Cloudflare
+// export const runtime = "edge";
 
 export async function GET(_request: Request, props: { params: Promise<{ minionID: string }> }) {
   const params = await props.params;
