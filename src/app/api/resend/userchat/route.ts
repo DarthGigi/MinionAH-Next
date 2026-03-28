@@ -1,10 +1,8 @@
 import { UserChatEmail } from "$emails/index";
 import { render } from "@react-email/render";
-import { Resend } from "resend";
 import { z } from "zod";
 import { env } from "~/env";
-
-const resend = new Resend(env.RESEND_API_KEY);
+import { usesend } from "~/server/usesend";
 
 export async function POST(request: Request) {
   if (!env.MINIONAH_SECRET || request.headers.get("Authorization") !== `Bearer ${env.MINIONAH_SECRET}`) {
@@ -29,7 +27,7 @@ export async function POST(request: Request) {
       })
       .parse(body);
 
-    const data = await resend.emails.send({
+    const data = await usesend.emails.send({
       from: "MinionAH <notifications@minionah.com>",
       to: userEmail,
       subject: `${chatByUsername} has sent you a message on MinionAH`,

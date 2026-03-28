@@ -17,7 +17,7 @@ export default function HomePage() {
 
         <ul className="list-inside list-disc text-left text-2xl">
           <li>OG - This is an Open Graph image generator</li>
-          <li>Resend - This is an email sending service</li>
+          <li>useSend - This is an email sending service</li>
         </ul>
         <p className="text-center text-2xl">
           Open-source on{" "}

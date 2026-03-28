@@ -10,6 +10,6 @@ This is an Open Graph image generator built with [NextJS](https://nextjs.org/) a
 
 It generates images for [MinionAH](https://minionah.com) based on the URL path.
 
-## Resend
+## useSend
 
-This is a simple API that sends emails to users using [Resend](https://resend.com/). It's needed to be in NextJS because a react-email like library doesn't exist for Svelte.
+This is a simple API that sends emails to users using [useSend](https://usesend.com/). It's needed to be in NextJS because a react-email like library doesn't exist for Svelte.
